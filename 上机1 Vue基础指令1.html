@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        h3[v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{myinfo.name}}的简历</h2>
+        <hr>
+        <h3>学号:{{myinfo.id}}</h3>
+        <h3>姓名:{{myinfo.name}}</h3>
+        <h3>年龄:{{myinfo.age}}</h3>
+        <h3 v-cloak>籍贯:{{myinfo.nativePlace}}</h3>
+        <p>jqr,你好</p>
+        <p>{{myinfo.name+',hello'}}</p>
+        <!--指令1:v-text:设置标记元素的内容,默认是替换全部内容,只能解释文本-->
+        <p v-text="myinfo.name+',hello'"></p>
+        <p v-text="'学校:'+myinfo.school"></p>
+        <!--指令2:v-html:设置标记元素的innerHTML,内容中如果有html代码,会被解析-->
+        <p v-html="'学校:'+myinfo.school2"></p>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                msg:'Vue',
+					n:2024,
+					score:[89,92,92,84,39],
+					myinfo:{
+						id:'20210312213',
+						name:'jqr',
+						age:21,
+						nativePlace:'山东',
+						tel:'12345678901',
+						address:'黄河南路 399号',
+                        school:'宿迁学院',
+                        school2:'<a href="https://www.squ.edu.cn">宿迁学院</a>'
+                    }
+            },
+            methods:{
+
+            },
+            
+        })
+    </script>
+</body>
+</html>
