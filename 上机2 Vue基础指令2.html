@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .boxcss{
+            width: 200px;
+            height: 200px;
+            border: 1px black solid;
+        }
+        .box1{
+            background-color: blue;
+        }
+        .box2{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- <V-if> -->
+    <!-- <v-else> -->
+    <!-- <v-show> -->
+    <div id="app">
+        <h2 v-if="!ifshow">{{msg}}</h2>
+        <h2 v-else>信工院欢迎您!</h2>
+        <div v-show="ifshow">
+            注意事项:
+            <br>
+            1.注意电动车在指定地点充电,不能带入宿舍
+            <br>
+            2.注意宿舍不要使用大功率电器
+            <br>
+            3.养成好的用电习惯
+        </div>
+        <!-- <v-bind> -->
+        <img :src="imgsrc1" alt="">
+        <!-- 简写 -->
+        <!-- <img v-bind:src="imgsrc2" alt=""> -->
+        <br>
+        <!-- v-on -->
+        <input type="button" :value="btnvalue" @click="lightonoff">
+        <br>
+        <!-- 方法1:变量绑定方式[数据变量1,数据变量2] -->
+        <div class="boxcss" :class="[classa,classb]"></div>
+        <!-- 方法2:常亮绑定方式[数据变量1,数据变量2] -->
+        <div :class="['boxcss','box1']"></div>
+
+        <!-- 方法3:布尔值表示 -->
+        <div :class="{'box':ifshow,'box1':!ifshow,'box2':ifshow}"></div>
+
+        <input type="button" @click="changecolor" :value="boxvlaue">
+        
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                ifshow:true,
+                msg:'宿院欢迎您!',
+                imgsrc1:'img/bulb_dark.jpg'  ,
+                imgsrc2:'img/bulb_light.jpg',
+                btnvalue:'开灯',
+                boxvlaue:'改变颜色',
+                boxcolor:'boxcss',
+                classb:'box1',
+                classc:'box2',
+            },
+            methods:{
+                lightonoff:function(){
+                    if(this.imgsrc1=='img/bulb_dark.jpg'){
+                        this.imgsrc1='img/bulb_light.jpg';
+                        this.btnvalue='关灯';
+                    }else{
+                        this.imgsrc1='img/bulb_dark.jpg';
+                        this.btnvalue='开灯';
+                    }
+                },
+                changecolor:function(){
+                    if(boxcolor=='box1')
+                    boxcolor=box2;
+                else 
+                boxcolor=box1
+                }
+            }
+        })
+    </script>
+</body>
+</html>
