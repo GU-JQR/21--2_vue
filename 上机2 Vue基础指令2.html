@@ -44,13 +44,13 @@
         <input type="button" :value="btnvalue" @click="lightonoff">
         <br>
         <!-- 方法1:变量绑定方式[数据变量1,数据变量2] -->
-        <div class="boxcss" :class="[classa,classb]"></div>
+        <div class="boxcss" :class="[classb,classc]"></div>
         <!-- 方法2:常亮绑定方式[数据变量1,数据变量2] -->
         <div :class="['boxcss','box1']"></div>
-
         <!-- 方法3:布尔值表示 -->
-        <div :class="{'box':ifshow,'box1':!ifshow,'box2':ifshow}"></div>
-
+        <div :class="{'boxcss':true,'box1':!ifshow,'box2':ifshow}"></div>
+        <!-- 综合运用 -->
+        <div :class="['boxcss',{'box1':ifshow,'box2':!ifshow}]"></div>
         <input type="button" @click="changecolor" :value="boxvlaue">
         
     </div>
@@ -79,10 +79,11 @@
                     }
                 },
                 changecolor:function(){
-                    if(boxcolor=='box1')
-                    boxcolor=box2;
-                else 
-                boxcolor=box1
+                    this.ifshow=!this.ifshow
+                //     if(ifshow==true)
+                    
+                // else 
+                // boxcolor=box1
                 }
             }
         })
