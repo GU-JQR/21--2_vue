@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今天的任务</title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/todolist.css">
+    <style>
+        .delete {
+            text-decoration: line-through;
+        }
+
+        .btnSelColor {
+            color: white;
+            background-color: blue;
+            width: 100px;
+        }
+
+        .btnUnSelColor {
+            color: white;
+            background-color: deepskyblue;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h2>今天的任务</h2>
+            <button type="button" :class="active===0?'btnSelColor' :'btnUnSelColor'"
+                @click="changeActive(0)">全部</button>
+            <button type="button" :class="active===1?'btnSelColor' :'btnUnSelColor'"
+                @click="changeActive(1)">已完成</button>
+            <button type="button" :class="active===2?'btnSelColor' :'btnUnSelColor'"
+                @click="changeActive(2)">未完成</button>
+            <input class="new-todo" type="text" v-model="inputValue" @keyup.enter="add">
+        </header>
+        <div>
+            <ul class="todo-list">
+                <li class="todo" v-for="(item,index) in todoList" :key="index">
+                    <div class="view">
+                        <span class="index">
+                            <input type="checkbox" v-model="item.isCompleted">
+                            {{item.id}}.
+                        </span>
+                        <label>
+                            <span :class="{'delete':item.isCompleted}">{{item.task}}</span>
+                            <span style="color: blue; position: absolute;right: 80px;"
+                                v-if="item.isCompleted">已完成</span>
+                            <span style="color: red; position: absolute;right: 80px;" v-else>未完成</span>
+                            <span style="color: red; position: absolute;right: 10px;" type="button">删除</span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer>{{todoList.length}}条任务</footer>
+        <button type="button" class="clear-completed">清空</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                todoList: [
+                    { id: 1, task: '100行代码', isCompleted: false },
+                    { id: 2, task: '50个单词', isCompleted: false },
+                    { id: 3, task: '1000米跑步', isCompleted: true },
+                ],
+                inputValue: '',
+                active: 0,
+            },
+            methods: {
+                add() {
+                    this.todoList.push({ id: this.todoList.length + 1, task: this.inputValue, isCompleted: false })
+                    this.inputValue = ''
+                },
+                remove(index) {
+                    this.todoList.splice(index, 1)
+                },
+                changeActive(index) {
+                    this.active = index
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
