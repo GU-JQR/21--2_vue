@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- <li v-for="item in school.colleges">{{item}}</li> -->
+            <li v-for="(item,i) in school.colleges" @click="add">{{i+1}}-----{{item}}
+                <input type="button" value="删除" @click="remove2(i)">
+            </li>
+            <!-- <li v-for="(value,key,index) in myinfo" @click="remove">{{index}}-----{{key}}---------{{value}}</li> -->
+        </ul>
+        <input type="text" v-model:value="inputValue">
+        <input type="button" value="添加" @click="add">
+        <input type="button" value="删除" @click="remove">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: "欢迎来到宿迁学院",
+                num: 1,
+                school: {
+                    colleges: ['经济管理学院', '信息工程学院', '文理学院', '建筑工程学院', '机电工程学院']
+                },
+                myinfo: {
+                    id: '20210312213',
+                    name: 'jqr',
+                    age: 21,
+                    nativePlace: '山东',
+                    tel: '12345678901',
+                    address: '黄河南路 399号',
+                    school: '宿迁学院',
+                    school2: '<a href="https://www.squ.edu.cn">宿迁学院</a>'
+                },
+                inputValue: '',
+                books: [
+                    { id: 1, name: '数据结构', pic: 'img/datastructure.jpg', publisher: '人民邮电出版社', price: 60 }
+                ]
+            },
+            methods: {
+                add() {
+                    this.school.colleges.push(this.inputValue)
+                },
+                remove() {
+                    // this.school.colleges.pop()
+                    this.school.colleges.shift()
+                },
+                remove2(index) {
+                    this.school.colleges.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
