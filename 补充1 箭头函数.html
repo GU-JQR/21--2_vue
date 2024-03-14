@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let test1 = function () {
+            console.log('hello1')
+        }
+        let test2 = () => console.log('hello2')
+        test1()
+        test2()
+
+        let test3 = (a, b) => console.log(a, b)
+        test3('hello3', 'world3')
+
+        //如果只有一个参数，可以省略括号
+
+        let test4 = a => { console.log(a) }
+        test4('hello4')
+
+        //当方法体中只有一条语句时，可以省略大括号
+
+        let test5 = (a, b) => a + b
+        console.log(test5(1, 2))
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

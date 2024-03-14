@@ -40,31 +40,37 @@
         </header>
         <div>
             <ul class="todo-list">
-                <li class="todo" v-for="(item,index) in todoList" :key="index">
+                <li class="todo" v-for="(item,index) in todoList2" :key="index">
                     <div class="view">
                         <span class="index">
                             <input type="checkbox" v-model="item.isCompleted">
-                            {{item.id}}.
+                            {{index+1}}.
                         </span>
                         <label>
                             <span :class="{'delete':item.isCompleted}">{{item.task}}</span>
                             <span style="color: blue; position: absolute;right: 80px;"
                                 v-if="item.isCompleted">已完成</span>
                             <span style="color: red; position: absolute;right: 80px;" v-else>未完成</span>
-                            <span style="color: red; position: absolute;right: 10px;" type="button">删除</span>
+                            <button style="color: red; position: absolute;right: 10px;" type="button"
+                                @click="remove(index)">删除</button>
                         </label>
                     </div>
                 </li>
             </ul>
         </div>
-        <footer>{{todoList.length}}条任务</footer>
-        <button type="button" class="clear-completed">清空</button>
+        <footer>{{todoList2.length}}条任务</footer>
+        <button type="button" class="clear-completed" @click="remove2">清空</button>
     </div>
     <script>
         var vm = new Vue({
             el: '#app',
             data: {
                 todoList: [
+                    { id: 1, task: '100行代码', isCompleted: false },
+                    { id: 2, task: '50个单词', isCompleted: false },
+                    { id: 3, task: '1000米跑步', isCompleted: true },
+                ],
+                todoList2: [
                     { id: 1, task: '100行代码', isCompleted: false },
                     { id: 2, task: '50个单词', isCompleted: false },
                     { id: 3, task: '1000米跑步', isCompleted: true },
@@ -82,6 +88,18 @@
                 },
                 changeActive(index) {
                     this.active = index
+                    if (index == 0) {
+                        this.todoList2 = this.todoList
+                    }
+                    else if (index == 1) {
+                        this.todoList2 = this.todoList.filter(item => item.isCompleted)
+                    }
+                    else if (index == 2) {
+                        this.todoList2 = this.todoList.filter(item => !item.isCompleted)
+                    }
+                },
+                remove2() {
+                    this.todoList = []
                 }
             },
         })
