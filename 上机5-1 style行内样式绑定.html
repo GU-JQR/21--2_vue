@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="div1" :class="{'box':isShow}" :style="{color:activeColor,fontSize:size}">
+            hello
+        </div>
+        <div id="div2" :class="{'box':isShow}" :style="[styleA,{textDecoration:linStyle}]">
+            world
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isShow: true,
+                styleA: {
+                    color: 'blue',
+                    fontSize: '35px'
+                },
+                activeColor: 'red',
+                size: '30px',
+                linStyle: 'line-through'
+            },
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>

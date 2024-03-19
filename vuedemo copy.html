@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                maxNum: 5,
+                minNmu: 0,
+                carlist: [
+                    { id: 1, price: 10, title: "瓜子", num: 1, imgUrl: '' },
+                    { id: 2, price: 20, title: "苹果", num: 2, imgUrl: '' },
+                    { id: 3, price: 30, title: "花生", num: 3, imgUrl: '' },
+                ],
+                totalPrice: 0,
+                totalNum: 0,
+                isChecked: false,
+            },
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>
