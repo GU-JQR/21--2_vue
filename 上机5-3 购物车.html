@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .flex {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>购物车</p>
+        <table cellspacing="5" cellpadding="0">
+            <tr v-for="(item,index) in carlist" :key="index">
+                <td><input type="checkbox" v-model:checked="item.isChecked"></td>
+                <td><img :src="item.img" alt=""></td>
+                <td>{{item.title}}{{item.price}}</td>
+                <td>
+                    <button @click="sub(index)">-</button>
+                    <input type="text" :value="item.num">
+                    <button @click="add(index)">+</button>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input type="checkbox" @change="changeAllCheck" v-model:checked="isChecked">全选
+            <span>总数量:{{totalNum}}</span>
+            <span>总价格:{{totalPrice}}</span>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                maxNum: 5,
+                minNum: 1,
+                carlist: [
+                    { id: 1, price: 10, title: '瓜子', num: 1, img: './img/p1.jpg', isChecked: false },
+                    { id: 2, price: 20, title: '苹果', num: 1, img: './img/p2.jpg', isChecked: false },
+                    { id: 3, price: 30, title: '花生', num: 1, img: './img/p3.jpg', isChecked: false },
+                ],
+                totalNum: 0,
+                totalPrice: 0,
+                isChecked: false,
+            },
+            methods: {
+                add(index) {
+                    if (this.carlist[index].num < this.maxNum)
+                        this.carlist[index].num++;
+                    else
+                        alert('不能超过' + this.maxNum + '个');
+                    this.getTotalNum();
+                    this.getTotalPrice();
+                },
+                sub(index) {
+                    if (this.carlist[index].num > this.minNum)
+                        this.carlist[index].num--;
+                    else
+                        alert('不能少于' + this.minNum + '个');
+                    this.getTotalNum();
+                    this.getTotalPrice();
+                },
+                changeAllCheck() {
+                    if (this.isChecked) {
+                        this.carlist.forEach(item => {
+                            item.isChecked = true;
+                        });
+                    }
+                    else {
+                        this.carlist.forEach(item => {
+                            item.isChecked = false;
+                        });
+                    }
+                    this.getTotalNum();
+                    this.getTotalPrice();
+                },
+                getTotalNum() {
+                    this.totalNum = 0;
+                    for (let i of this.carlist) {
+                        if (i.isChecked) {
+                            this.totalNum += i.num;
+                        }
+                    }
+                },
+                getTotalPrice() {
+                    this.totalPrice = 0;
+                    for (let i of this.carlist) {
+                        if (i.isChecked) {
+                            this.totalPrice += i.num * i.price;
+                        }
+                    }
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>
