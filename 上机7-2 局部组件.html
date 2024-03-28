@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <school></school>
+        <squ></squ>
+
+    </div>
+    <div id="app2">
+        <school></school>
+    </div>
+
+    <script>
+        // 第一步:创建组件(定义)
+        var component1 = {
+            template: "<p>欢迎来到宿迁学院!!!!!</p>",
+        }
+
+        var component2 = {
+            template: `
+            <div>
+                <h2>宿迁学院</h2>
+                <ul>
+                    <li>信息工程学院</li>
+                    <li>经济管理学院</li>
+                    <li>文理学院</li>
+                </ul>
+            </div>
+            `
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            //注册局部组件
+            components: {
+                school: component1,
+                squ: component2,
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app2',
+            data: {},
+            methods: {},
+            components: {
+                school: component1,
+            }
+        })
+    </script>
+</body>
+
+</html>

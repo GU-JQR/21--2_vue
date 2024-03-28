@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <school></school>
+        <div>
+            <h2>我来了</h2>
+            <school></school>
+            <student></student>
+        </div>
+    </div>
+    <div id="app2">
+        <student></student>
+    </div>
+    <script>
+        // 第一步:创建组件(定义)
+        var component1 = {
+            template: "<p>欢迎来到宿迁学院</p>",
+        }
+
+        var component2 = Vue.extend({
+            template:
+                `
+                    <div>
+                        <h3>姓名:{{name}}</h3>
+                        <p>专业:软件工程(嵌入式培养)</p>
+                        <p>班级:{{className}}</p>
+                        <button @click="btnClick">点击我晋级</button>
+                    </div>
+                `,
+            data() {
+                return {
+                    name: 'jqr',
+                    className: '21软嵌2'
+                }
+            },
+            methods: {
+                btnClick() {
+                    this.className = '25研一'
+                }
+            }
+        })
+
+        //2.注册全局组件
+        Vue.component('school', component1)
+        Vue.component('student', component2)
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+        })
+        var vm = new Vue({
+            el: '#app2',
+            data: {},
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>

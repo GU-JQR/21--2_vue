@@ -11,14 +11,16 @@
 <body>
     <div id="app">
         <p>{{num}}</p>
+        <p>欢迎您:{{name}}</p>
         <button @click="add">点击我n++</button>
-
+        <button @click="bye">bye</button>
     </div>
     <script>
         var vm = new Vue({
             el: '#app',
             data: {
                 num: 1,
+                name: "Jim"
             },
             //初始化:生命周期,但是数据代理没有,没法访问data和methods
             // beforeCreate() {
@@ -34,7 +36,8 @@
             // },
             // beforeMount() {
             //     console.log('beforeMount开始');
-            //     document.querySelector('p').innerHTML = "hello world"//无效
+            //     // document.querySelector('p').innerHTML = "hello world"//无效
+            //     debugger;
             // },
             // mounted() {
             //     console.log('mounted开始');
@@ -45,16 +48,28 @@
             //     console.log("num=" + this.num);//数据更新了,页面中的数据是旧的
             //     debugger;
             // },
-            updated() {
-                console.log('Update开始');
-                console.log("num=" + this.num);//数据和页面同步
-                debugger;
-            },
+            // updated() {
+            //     console.log('Update开始');
+            //     console.log("num=" + this.num);//数据和页面同步
+            //     debugger;
+            // },
             methods: {
                 add() {
                     this.num++;
+                },
+                bye() {
+                    console.log('bye');
+                    this.$destroy();
                 }
             },
+            beforeDestroy() {
+                console.log('beforeDestroy开始');
+                console.log("num=" + this.num);
+            },
+            destroyed() {
+                console.log('destroyed开始');
+                console.log("num=" + this.num);
+            }
         })
     </script>
 </body>
