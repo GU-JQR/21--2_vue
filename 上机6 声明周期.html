@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="add">点击我n++</button>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                num: 1,
+            },
+            //初始化:生命周期,但是数据代理没有,没法访问data和methods
+            // beforeCreate() {
+            //     console.log('beforeCreate开始');
+            //     console.log("num=" + this.num);//未定义
+            //     this.add();//报错
+            // },
+            // created() {
+            //     console.log('created开始');
+            //     this.num++;
+            //     console.log("num=" + this.num);
+            //     this.add();
+            // },
+            // beforeMount() {
+            //     console.log('beforeMount开始');
+            //     document.querySelector('p').innerHTML = "hello world"//无效
+            // },
+            // mounted() {
+            //     console.log('mounted开始');
+            //     document.querySelector('p').innerHTML = "hello jack"
+            // },
+            // beforeUpdate() {
+            //     console.log('beforeUpdate开始');
+            //     console.log("num=" + this.num);//数据更新了,页面中的数据是旧的
+            //     debugger;
+            // },
+            updated() {
+                console.log('Update开始');
+                console.log("num=" + this.num);//数据和页面同步
+                debugger;
+            },
+            methods: {
+                add() {
+                    this.num++;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

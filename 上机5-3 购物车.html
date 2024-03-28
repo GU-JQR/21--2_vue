@@ -24,7 +24,7 @@
         <p>购物车</p>
         <table cellspacing="5" cellpadding="0">
             <tr v-for="(item,index) in carlist" :key="index">
-                <td><input type="checkbox" v-model:checked="item.isChecked"></td>
+                <td><input type="checkbox" v-model:checked="item.isChecked" @change="changeCheck"></td>
                 <td><img :src="item.img" alt=""></td>
                 <td>{{item.title}}{{item.price}}</td>
                 <td>
@@ -102,6 +102,22 @@
                         }
                     }
                 },
+                changeCheck() {
+                    let n = 0;
+                    for (item of this.carlist) {
+                        if (item.isChecked) {
+                            n++;
+                        }
+                    }
+                    if (n == 3) {
+                        this.isChecked = true;
+                    }
+                    else {
+                        this.isChecked = false;
+                    }
+                    this.getTotalNum();
+                    this.getTotalPrice();
+                }
             },
         })
     </script>
