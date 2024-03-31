@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" value="瓜子" v-model="checkedNames">瓜子
+        <input type="checkbox" value="苹果" v-model="checkedNames">苹果
+        <input type="checkbox" value="花生" v-model="checkedNames">花生
+        <br>
+        你选择的是：{{ checkedNames }}
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                checkedNames: []
+            },
+            methods: {
+                //
+            }
+        });
+    </script>
+</body>
+
+</html>
