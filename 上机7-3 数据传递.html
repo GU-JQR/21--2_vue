@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="pmsg">
+        <br>
+        <com1 msg="hello"></com1>
+        <br>
+        <com1 :msg="pmsg"></com1>
+        <br>
+        <com2 :school="school"></com2>
+    </div>
+    <script>
+        Vue.component('com1', {
+            //声明属性
+            props: ['msg'],
+            template:
+                `
+            <span>{{msg}}</span>
+            `
+        })
+
+        Vue.component('com2', {
+            props: ['school'],
+            template:
+                `
+            <ul>
+                <li v-for="item in school" :key="item.id">{{item}}</li>    
+            </ul>
+            `
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: "今天星期二,昨天是愚人节",
+                school: ['信工院', '马院', '经管院', '建工院']
+            },
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>
