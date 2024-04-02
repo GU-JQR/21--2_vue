@@ -17,6 +17,8 @@
         <com1 :msg="pmsg"></com1>
         <br>
         <com2 :school="school"></com2>
+        <br>
+        <com3 v-for="item in school" :ii="item"></com3>
     </div>
     <script>
         Vue.component('com1', {
@@ -27,7 +29,6 @@
             <span>{{msg}}</span>
             `
         })
-
         Vue.component('com2', {
             props: ['school'],
             template:
@@ -35,6 +36,13 @@
             <ul>
                 <li v-for="item in school" :key="item.id">{{item}}</li>    
             </ul>
+            `
+        })
+        Vue.component('com3', {
+            props: ['ii'],
+            template:
+                `
+                <li>{{ii}}</li>    
             `
         })
         var vm = new Vue({

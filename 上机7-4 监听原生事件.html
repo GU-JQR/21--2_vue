@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="app">
+        <com1 @click.native="btnClick"></com1>
+    </div>
+    <script>
+        Vue.component('com1', {
+            template:
+                `
+            <button>点击我</button>
+            
+            `
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                btnClick() {
+                    alert('点击了按钮')
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
