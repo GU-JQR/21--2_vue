@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .box>div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #777;
+            padding: 20px;
+            width: 800px;
+        }
+
+        img {
+            width: 150px;
+            margin-right: 50px;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            width: 200px;
+            text-align: center;
+        }
+
+        c2>butt {
+            width: 30px;
+            height: 30px;
+        }
+
+        input {
+            height: 30px;
+            width: 100px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h3>商品列表</h3>
+        <div class="box">
+            <div v-for="item in book" :key="item.id">
+                <img :src="item.img" alt="">
+                <p>{{item.title}}</p>
+                <p>{{item.price}}&nbsp;元</p>
+                <button @click="car(item.id)">加入购物车</button>
+            </div>
+        </div>
+        <h3>购物车</h3>
+        <div class="box butt">
+            <div v-for="item in book" :key="item.id" v-if="item.num!=0">
+                <img :src="item.img" alt="">
+                <p>{{item.title}}</p>
+                <p>{{item.price}}&nbsp;元</p>
+                <button @click="sub(item.id)">-</button>
+                <input type="text" v-model="item.num">
+                <button @click="add(item.id)">+</button>
+            </div>
+        </div>
+        <div v-if="book[0].num==0&&book[1].num==0">
+            <p>空</p>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                book: [
+                    { id: 1, title: 'Vue.js3.0从入门到精通', price: 66, num: 0, img: './img/book1.jpg' },
+                    { id: 2, title: 'Vue.js3开发详情', price: 66, num: 0, img: './img/book2.jpg' },
+                ]
+            },
+            methods: {
+                add(id) {
+                    this.book[id - 1].num++
+                },
+                sub(id) {
+                    if (this.book[id - 1].num > 0)
+                        this.book[id - 1].num--
+                },
+                car(id) {
+                    this.book[id - 1].num++
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
