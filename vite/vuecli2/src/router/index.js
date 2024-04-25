@@ -6,23 +6,19 @@ import home from '../mall/pages/home.vue'
 import goods from '../mall/pages/goods.vue'
 import adv from '../mall/pages/adv.vue'
 import error from '../mall/pages/error.vue'
+import mall from '../mall/LoginReg.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      // path: '/',
-      // name: 'mallIndex',
-      // component: mallIndex,
-      // children:[
-      //   {
-      //     path:'',
-      //     name:'home',
-      //     component:home
-      //   }
-      // ]
       path: '/',
+      name: 'mall',
+      component: mall
+    },
+    {
+      path: '/home',
       name: 'home',
       component: home,
     },
