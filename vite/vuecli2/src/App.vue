@@ -1,8 +1,9 @@
 <template>
     <div>
-        <myHead></myHead>
+        <!-- <myHead></myHead>
         <myMain></myMain>
-        <myFoot></myFoot>
+        <myFoot></myFoot> -->
+        <router-view></router-view>
     </div>
 </template>
 <!-- template只能有一个根标签,(根标签里面可以有多个标签) -->
