@@ -8,10 +8,10 @@
                 <el-tab-pane label="登录" name="login">
                     <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px"
                         class="demo-ruleForm">
-                        <el-form-item label="用户名" prop="pass">
+                        <el-form-item label="用户名" prop="userName">
                             <el-input type="text" v-model="loginForm.userName" autocomplete="off"></el-input>
                         </el-form-item>
-                        <el-form-item label="密码" prop="checkPass">
+                        <el-form-item label="密码" prop="userCode">
                             <el-input type="password" v-model="loginForm.userCode" autocomplete="off"></el-input>
                         </el-form-item>
                         <el-form-item style="text-align: center;">
@@ -28,11 +28,47 @@
 <script>
 export default {
     data() {
+        //验证规则
+        var validateUserName = (rule, value, callBack) => {
+            if (value === '') {
+                callBack(new Error('请输入用户名'))
+            } else {
+                callBack()
+            }
+        }
+
+        var validateUserCode = (rule, value, callBack) => {
+            if (value === '') {
+                callBack(new Error('请输入密码'))
+            } else {
+                callBack()
+            }
+        }
         return {
             loginForm: {
                 userName: '',
                 userCode: '',
+            },
+            rules: {
+                userName: [
+                    { validator: validateUserName, trigger: 'blur' }
+                ],
+                userCode: [
+                    { validator: validateUserCode, trigger: 'blur' }
+                ]
             }
+        }
+    },
+    methods: {
+        submitForm(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    console.log('submit!');
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
         }
     }
 }
