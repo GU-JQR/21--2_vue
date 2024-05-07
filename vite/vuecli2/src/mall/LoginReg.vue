@@ -1,6 +1,6 @@
 <template>
     <div class="loginReg">
-        <!-- <el-button>push</el-button> -->
+
         <el-card class="boxCard">
             <div slot="header" class="clearfix " style="text-align: center;">****系统</div>
             <div>内容</div>
