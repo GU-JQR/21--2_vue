@@ -5,7 +5,7 @@
 </template>
 
 <script>
-//将此模块共享出去,名字是没有
+//将此模块共享出去,名字是没有head
 export default {
     name: 'myMain'
 }
