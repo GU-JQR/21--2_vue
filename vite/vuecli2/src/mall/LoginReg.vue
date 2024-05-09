@@ -44,7 +44,7 @@
 <script>
 export default {
     data() {
-        //验证规则
+
         var validateUserName = (rule, value, callBack) => {
             if (value === '') {
                 callBack(new Error('请输入用户名'))
