@@ -7,11 +7,11 @@
                 <el-tab-pane label="登录" name="login">
                     <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px"
                         class="demo-ruleForm">
-                        <el-form-item label="用户名" prop="userName">
-                            <el-input type="text" v-model="loginForm.userName" autocomplete="off"></el-input>
+                        <el-form-item label="用户名" prop="username">
+                            <el-input type="text" v-model="loginForm.username" autocomplete="off"></el-input>
                         </el-form-item>
-                        <el-form-item label="密码" prop="userCode">
-                            <el-input type="password" v-model="loginForm.userCode" autocomplete="off"></el-input>
+                        <el-form-item label="密码" prop="password">
+                            <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
                         </el-form-item>
                         <el-form-item style="text-align: center;">
                             <el-button type="primary" @click="submitForm('loginForm')">提交</el-button>
@@ -21,11 +21,11 @@
                 <el-tab-pane label="注册" name="register">
                     <el-form :model="RegisterFrom" status-icon :rules="rules" ref="RegisterFrom" label-width="100px"
                         class="demo-ruleForm">
-                        <el-form-item label="用户名" prop="userName">
-                            <el-input type="text" v-model="RegisterFrom.userName" autocomplete="off"></el-input>
+                        <el-form-item label="用户名" prop="username">
+                            <el-input type="text" v-model="RegisterFrom.username" autocomplete="off"></el-input>
                         </el-form-item>
-                        <el-form-item label="密码" prop="userCode">
-                            <el-input type="password" v-model="RegisterFrom.userCode" autocomplete="off"></el-input>
+                        <el-form-item label="密码" prop="password">
+                            <el-input type="password" v-model="RegisterFrom.password" autocomplete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="确认密码" prop="configUserCode">
                             <el-input type="password" v-model="RegisterFrom.configUserCode"
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import api from '../api'
+
 export default {
     data() {
         //验证规则
@@ -70,19 +72,19 @@ export default {
             activeName: "login",//默认显示的选项卡
             currentTab: "login",
             loginForm: {
-                userName: '',
-                userCode: '',
+                username: '',
+                password: '',
             },
             RegisterFrom: {
-                userName: '',
-                userCode: '',
+                username: '',
+                password: '',
                 configUserCode: '',
             },
             rules: {
-                userName: [
+                username: [
                     { validator: validateUserName, trigger: 'blur' }
                 ],
-                userCode: [
+                password: [
                     { validator: validateUserCode, trigger: 'blur' }
                 ],
                 configUserCode: [
@@ -98,7 +100,10 @@ export default {
                     if (this.currentTab == 'login') {
                         alert('登录中');
                     } else if (this.currentTab == 'register') {
-                        alert('注册中');
+                        console.log(this.RegisterFrom);
+                        api.register(this.RegisterFrom).then(res => {
+                            console.log("注册...");
+                        })
                     }
                 } else {
                     console.log('error submit!!');
