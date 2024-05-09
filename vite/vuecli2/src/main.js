@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import mallIndex from './mall/mallIndex.vue'
-import "../node_modules/element-ui/element-ui.style.min.css"
-import ElementUI from "../node_modules/element-ui/element-ui.min"
+import "../element-ui/element-ui.style.min.css"
+import ElementUI from "../element-ui/element-ui.min"
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
