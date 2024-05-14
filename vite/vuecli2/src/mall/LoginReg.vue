@@ -98,7 +98,10 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     if (this.currentTab == 'login') {
-                        alert('登录中');
+                        api.log(this.loginForm).then(res => {
+                            console.log("登录...");
+                            this.$router.push('/home')
+                        })
                     } else if (this.currentTab == 'register') {
                         console.log(this.RegisterFrom);
                         api.register(this.RegisterFrom).then(res => {
